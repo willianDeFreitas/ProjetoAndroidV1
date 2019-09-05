@@ -3,21 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/alunoUm"
+    <ListView
+        android:id="@+id/activity_main_lista_de_alunos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Juca" />
-
-    <TextView
-        android:id="@+id/alunoDois"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Jaca" />
-
-    <TextView
-        android:id="@+id/alunoTres"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Juju" />
+        android:layout_height="match_parent" />
 </LinearLayout>
