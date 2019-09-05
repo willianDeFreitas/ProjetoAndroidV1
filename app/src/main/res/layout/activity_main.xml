@@ -3,4 +3,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/alunoUm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Juca" />
+
+    <TextView
+        android:id="@+id/alunoDois"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jaca" />
+
+    <TextView
+        android:id="@+id/alunoTres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Juju" />
 </LinearLayout>
