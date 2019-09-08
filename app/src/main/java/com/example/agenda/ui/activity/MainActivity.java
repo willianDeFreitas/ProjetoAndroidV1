@@ -1,26 +1,25 @@
-package com.example.agenda;
+package com.example.agenda.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
+import com.example.agenda.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //chamando a activity_main que apresenta o layout da tela
         setContentView(R.layout.activity_main);
+        setTitle("Lista de Alunos");
 
         //utilizando adapter view
         List<String> alunos = new ArrayList<>(Arrays.asList("Willian", "Amanda", "Julia"));

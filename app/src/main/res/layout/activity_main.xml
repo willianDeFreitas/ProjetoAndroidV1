@@ -14,7 +14,7 @@
         android:backgroundTint="#E91E63"
         android:clickable="true"
         android:focusable="true"
-        />
+        android:src="@drawable/ic_action_novo_aluno" />
 
     <ListView
         android:id="@+id/activity_main_lista_de_alunos"
