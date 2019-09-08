@@ -8,10 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.example.agenda.dao.AlunoDAO;
 
 public class ListaAlunosActivity extends AppCompatActivity {
     @Override
@@ -19,12 +16,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //chamando a activity_main que apresenta o layout da tela
         setContentView(R.layout.activity_lista_alunos);
+
+        AlunoDAO dao = new AlunoDAO();
+
         setTitle("Lista de Alunos");
 
-        //utilizando adapter view
-        List<String> alunos = new ArrayList<>(Arrays.asList("Willian", "Amanda", "Julia"));
         ListView listaDeAlunos = findViewById(R.id.activity_lista_alunos_listview);
-        listaDeAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
+        listaDeAlunos.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
+                dao.todos()));
 
     }
 }
