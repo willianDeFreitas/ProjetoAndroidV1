@@ -2,8 +2,14 @@ package com.example.agenda.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.agenda.R;
+import com.example.agenda.model.Aluno;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
 
@@ -11,5 +17,23 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
+        final EditText txtNome = findViewById(R.id.activity_formulario_aluno_nome);
+        final EditText txtTelefone = findViewById(R.id.activity_formulario_aluno_telefone);
+        final EditText txtEmail = findViewById(R.id.activity_formulario_aluno_email);
+
+        Button btnSalvar = findViewById(R.id.activity_formulario_aluno_botao_salvar);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nome = txtNome.getText().toString();
+                String telefone = txtTelefone.getText().toString();
+                String email = txtEmail.getText().toString();
+
+                Aluno alunoCriado = new Aluno(nome, telefone, email);
+                Toast.makeText(FormularioAlunoActivity.this, alunoCriado.getNome() +" - "+
+                        alunoCriado.getTelefone() +" - "+
+                        alunoCriado.getEmail(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
