@@ -12,11 +12,12 @@ import com.example.agenda.R;
 import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.model.Aluno;
 
-import java.io.Serializable;
+import static com.example.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
 
-    public static final String TITULO_APPBAR = "Novo aluno";
+    private static final String TITULO_APPBAR_NOVO_ALUNO = "Novo aluno";
+    private static final String TITULO_APPBAR_EDITA_ALUNO = "Edita aluno";
     private EditText txtNome;
     private EditText txtTelefone;
     private EditText txtEmail;
@@ -27,20 +28,27 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
-        setTitle(TITULO_APPBAR);
         inicializacaoDosCampos();
         configuraBotaoSalvar();
+        carregaAluno();
+    }
 
+    private void carregaAluno() {
         Intent dados = getIntent();
-        if (dados.hasExtra("aluno")){
-            aluno = (Aluno) dados.getSerializableExtra("aluno");
-            txtNome.setText(aluno.getNome());
-            txtTelefone.setText(aluno.getTelefone());
-            txtEmail.setText(aluno.getEmail());
+        if (dados.hasExtra(CHAVE_ALUNO)){
+            setTitle(TITULO_APPBAR_EDITA_ALUNO);
+            aluno = (Aluno) dados.getSerializableExtra(CHAVE_ALUNO);
+            preencheCampos();
         } else {
+            setTitle(TITULO_APPBAR_NOVO_ALUNO);
             aluno = new Aluno();
         }
+    }
 
+    private void preencheCampos() {
+        txtNome.setText(aluno.getNome());
+        txtTelefone.setText(aluno.getTelefone());
+        txtEmail.setText(aluno.getEmail());
     }
 
     private void configuraBotaoSalvar() {
@@ -48,17 +56,21 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                preencheAluno();
-
-                if(aluno.temIdValido()){
-                    dao.edita(aluno);
-                } else {
-                    dao.salva(aluno);
-                }
-                
-                finish();
+                finalizaFormulario();
             }
         });
+    }
+
+    private void finalizaFormulario() {
+        preencheAluno();
+
+        if(aluno.temIdValido()){
+            dao.edita(aluno);
+        } else {
+            dao.salva(aluno);
+        }
+
+        finish();
     }
 
     private void inicializacaoDosCampos() {
